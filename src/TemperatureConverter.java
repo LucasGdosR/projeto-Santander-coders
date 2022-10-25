@@ -26,4 +26,28 @@ public class TemperatureConverter {
     public double kelvinToFahrenheit(double kelvin) {
         return celsiusToFahrenheit(kelvinToCelsius(kelvin));
     }
+
+    public double convert(String originalUnit, String finalUnit, double originalTemperature) {
+        double convertedTemperature = 0;
+        if (originalUnit.equals("C")) {
+            switch (finalUnit) {
+                case "F" -> convertedTemperature = celsiusToFahrenheit(originalTemperature);
+                case "K" -> convertedTemperature = celsiusToKelvin(originalTemperature);
+                case "C" -> convertedTemperature = originalTemperature;
+            }
+        } else if (originalUnit.equals("F")) {
+            switch (finalUnit) {
+                case "C" -> convertedTemperature = fahrenheitToCelsius(originalTemperature);
+                case "K" -> convertedTemperature = fahrenheitToKelvin(originalTemperature);
+                case "F" -> convertedTemperature = originalTemperature;
+            }
+        } else {
+            switch (finalUnit) {
+                case "C" -> convertedTemperature = kelvinToCelsius(originalTemperature);
+                case "F" -> convertedTemperature = kelvinToFahrenheit(originalTemperature);
+                case "K" -> convertedTemperature = originalTemperature;
+            }
+        }
+        return convertedTemperature;
+    }
 }

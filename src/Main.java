@@ -17,32 +17,10 @@ public class Main {
         for(int i = 0; i < numberOfCycles; i++) {
             System.out.println("Informe o número da temperatura original. São permitidas casas decimais: ");
             double originalTemperature = input.getTemperature();
-            double convertedTemperature = 0;
-
             TemperatureConverter converter = new TemperatureConverter();
-            if (originalUnit.equals("C")) {
-                switch (finalUnit) {
-                    case "F" -> convertedTemperature = converter.celsiusToFahrenheit(originalTemperature);
-                    case "K" -> convertedTemperature = converter.celsiusToKelvin(originalTemperature);
-                    case "C" -> convertedTemperature = originalTemperature;
-                }
-            } else if (originalUnit.equals("F")) {
-                switch (finalUnit) {
-                    case "C" -> convertedTemperature = converter.fahrenheitToCelsius(originalTemperature);
-                    case "K" -> convertedTemperature = converter.fahrenheitToKelvin(originalTemperature);
-                    case "F" -> convertedTemperature = originalTemperature;
-                }
-            } else {
-                switch (finalUnit) {
-                    case "C" -> convertedTemperature = converter.kelvinToCelsius(originalTemperature);
-                    case "F" -> convertedTemperature = converter.kelvinToFahrenheit(originalTemperature);
-                    case "K" -> convertedTemperature = originalTemperature;
-                }
-            }
+            double convertedTemperature = converter.convert(originalUnit, finalUnit, originalTemperature);
             originalTemperatureSum += originalTemperature;
             convertedTemperatureSum += convertedTemperature;
-            // A grafia correta de graus Celsius e graus Farenheit é com o símbolo °
-            // Esse símbolo é incorreto com Kelvin, por isso os "if" abaixo. É uma formalidade.
             System.out.println("A temperatura passada é " + originalTemperature + " º" + originalUnit + ".");
             System.out.println("A conversão é " + convertedTemperature + " º" + finalUnit + ".");
         }
